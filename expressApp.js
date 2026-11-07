@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.json());
 
-
+// SAMPLE BOOKS
 let books = [
   {
     id: 1,
@@ -28,6 +28,8 @@ let books = [
     category: "Programming",
   },
 ];
+
+// 1. GET ALL BOOKS
 app.get("/books", (req, res) => {
   res.status(200).json(books);
 });
@@ -47,7 +49,7 @@ app.get("/books/:id", (req, res) => {
   res.status(200).json(book);
 });
 
-
+// 3. ADD NEW BOOK
 app.post("/books", (req, res) => {
   const { id, title, author, price, category } = req.body;
 
@@ -85,7 +87,7 @@ app.post("/books", (req, res) => {
   });
 });
 
-
+// 4. UPDATE BOOK
 app.put("/books/:id", (req, res) => {
   const id = Number(req.params.id);
 
@@ -124,7 +126,7 @@ app.put("/books/:id", (req, res) => {
   });
 });
 
-
+// 5. DELETE BOOK
 app.delete("/books/:id", (req, res) => {
   const id = Number(req.params.id);
 
@@ -144,14 +146,14 @@ app.delete("/books/:id", (req, res) => {
   });
 });
 
-
+// INVALID ROUTE
 app.use((req, res) => {
   res.status(404).json({
     message: "Route not found",
   });
 });
 
-
+// START SERVER
 app.listen(4000, () => {
   console.log("Express Server running at http://localhost:4000");
 });
